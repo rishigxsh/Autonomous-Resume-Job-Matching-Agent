@@ -1,0 +1,31 @@
+{
+  "job_title": "Senior Backend Engineer",
+  "company": "Finova Technologies",
+  "location": "New York, NY (Hybrid)",
+  "summary": "We are looking for a Senior Backend Engineer to design, build, and scale our core payment processing services. You will work closely with product and infrastructure teams to deliver reliable, low-latency systems.",
+  "required_skills": [
+    "python",
+    "postgresql",
+    "docker",
+    "kubernetes",
+    "rest apis",
+    "aws"
+  ],
+  "preferred_skills": [
+    "go",
+    "kafka",
+    "terraform",
+    "grpc",
+    "redis"
+  ],
+  "minimum_experience_years": 5,
+  "responsibilities": [
+    "Design and implement scalable backend services for payment processing.",
+    "Collaborate with DevOps to manage CI/CD pipelines and infrastructure-as-code.",
+    "Monitor system health using observability tools and maintain SLA targets.",
+    "Mentor junior engineers through code reviews and design discussions."
+  ],
+  "education_requirements": [
+    "Bachelor's degree in Computer Science or related field"
+  ]
+}

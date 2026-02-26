@@ -1,0 +1,42 @@
+{
+  "overall_score": 82,
+  "component_scores": {
+    "required_skills_score": 100,
+    "preferred_skills_score": 80,
+    "experience_score": 90,
+    "responsibilities_score": 70,
+    "education_score": 100
+  },
+  "matched_skills": [
+    "python",
+    "postgresql",
+    "docker",
+    "kubernetes",
+    "rest apis",
+    "aws",
+    "go",
+    "terraform",
+    "grpc",
+    "redis"
+  ],
+  "missing_skills": [],
+  "strengths": [
+    "Covers all 6 required skills listed in the job description.",
+    "Has 6 years of experience, exceeding the 5-year minimum requirement.",
+    "Demonstrated experience with microservices architecture and high-throughput systems directly relevant to payment processing.",
+    "Holds an AWS certification aligning with the cloud infrastructure needs."
+  ],
+  "weak_areas": [
+    "No direct experience in payment processing or financial services domain.",
+    "Resume does not mention mentoring or leadership activities despite the JD requiring mentoring of junior engineers.",
+    "Kafka is listed as preferred and appears in experience context but not in the explicit skills list \u2014 match was inferred from responsibilities."
+  ],
+  "improvement_suggestions": [
+    "Add a bullet point about mentoring or leading junior team members if applicable.",
+    "Highlight any experience with financial systems, compliance, or transaction processing.",
+    "Explicitly list Kafka in the skills section since it appears in your work history."
+  ],
+  "rationale": "Priya is a strong technical match for this role, covering all required skills and most preferred skills. Her 6 years of backend experience with microservices at scale aligns well with the JD's demands. The main gaps are the absence of domain experience in financial services and no explicit mention of mentoring activities, which the role calls for. Addressing these gaps in the resume would strengthen the application.",
+  "resume_name": "Priya Sharma",
+  "job_title": "Senior Backend Engineer"
+}

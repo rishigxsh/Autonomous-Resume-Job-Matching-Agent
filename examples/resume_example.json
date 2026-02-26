@@ -1,0 +1,56 @@
+{
+  "candidate_name": "Priya Sharma",
+  "email": "priya.sharma@email.com",
+  "phone": "+1-555-204-8831",
+  "summary": "Backend engineer with 6 years of experience building scalable microservices in Python and Go. Passionate about clean architecture and observability.",
+  "skills": [
+    "python",
+    "go",
+    "postgresql",
+    "redis",
+    "docker",
+    "kubernetes",
+    "aws",
+    "terraform",
+    "ci/cd",
+    "rest apis",
+    "grpc",
+    "prometheus",
+    "grafana"
+  ],
+  "experience": [
+    {
+      "job_title": "Senior Backend Engineer",
+      "company": "Cloudtask Inc.",
+      "start_date": "2022-03",
+      "end_date": "present",
+      "responsibilities": [
+        "Designed and maintained 12 microservices handling 50k requests per second.",
+        "Led migration from monolith to event-driven architecture using Kafka.",
+        "Reduced P99 API latency by 40% through caching and query optimization."
+      ]
+    },
+    {
+      "job_title": "Backend Developer",
+      "company": "DataNova",
+      "start_date": "2019-06",
+      "end_date": "2022-02",
+      "responsibilities": [
+        "Built RESTful APIs in Python (FastAPI) serving a B2B analytics platform.",
+        "Implemented CI/CD pipelines with GitHub Actions and Docker.",
+        "Wrote integration and load tests; improved test coverage from 45% to 88%."
+      ]
+    }
+  ],
+  "education": [
+    {
+      "degree": "Bachelor of Technology in Computer Science",
+      "institution": "Indian Institute of Technology, Hyderabad",
+      "end_date": "2019-05"
+    }
+  ],
+  "certifications": [
+    "AWS Certified Solutions Architect \u2013 Associate"
+  ],
+  "total_years_experience": 6
+}

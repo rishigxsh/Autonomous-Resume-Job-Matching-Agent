@@ -38,7 +38,7 @@ app.include_router(api_router)
 @app.get("/health")
 async def health() -> dict:
     """Lightweight liveness check — returns 200 when the server is up."""
-    return {"status": "ok", "env": settings.env}
+    return {"status": "ok", "env": settings.app_env}
 
 
 # In production, serve the built frontend from /frontend/dist.

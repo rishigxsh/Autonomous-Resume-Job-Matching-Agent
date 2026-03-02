@@ -22,13 +22,17 @@ from pydantic_settings import BaseSettings, SettingsConfigDict
 class Settings(BaseSettings):
     """Top-level application settings."""
 
-    model_config = SettingsConfigDict(env_file=".env", env_file_encoding="utf-8")
+    model_config = SettingsConfigDict(
+        env_file=".env",
+        env_file_encoding="utf-8",
+        env_prefix="",
+    )
 
     app_name: str = "Autonomous Resume–Job Matching Agent"
     version: str = "0.1.0"
 
-    # Environment mode
-    env: str = "dev"  # "dev" or "prod"
+    # Environment mode — uses APP_ENV to avoid collision with system ENV variable
+    app_env: str = "dev"  # "dev" or "prod"
 
     # CORS — comma-separated string, split at runtime.
     cors_origins: str = "http://localhost:5173,http://localhost:5174,http://127.0.0.1:5173,http://127.0.0.1:5174"
@@ -41,7 +45,7 @@ class Settings(BaseSettings):
 
     @property
     def is_prod(self) -> bool:
-        return self.env.lower() == "prod"
+        return self.app_env.lower() == "prod"
 
     @property
     def allowed_origins(self) -> List[str]:

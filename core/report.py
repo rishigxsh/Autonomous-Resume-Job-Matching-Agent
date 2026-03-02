@@ -91,7 +91,7 @@ _SCORE_STYLE = ParagraphStyle(
     fontName="Helvetica-Bold",
     fontSize=28,
     alignment=1,
-    spaceAfter=8,
+    spaceAfter=16,
 )
 
 _HR = HRFlowable(width="100%", thickness=0.5, color=colors.HexColor("#CCCCCC"),
@@ -152,7 +152,7 @@ def generate_pdf_report(
 
     # --- Section 2: Score overview ---
     story.append(Paragraph(f"{match_report.overall_score} / 100", _SCORE_STYLE))
-    story.append(Spacer(1, 4))
+    story.append(Spacer(1, 12))
 
     # Component table
     table_data = [["Category", "Score", "Weight"]]

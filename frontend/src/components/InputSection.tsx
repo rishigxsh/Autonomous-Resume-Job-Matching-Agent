@@ -26,6 +26,23 @@ B.S. Computer Science — State University (2019-05)
 CERTIFICATIONS
 AWS Certified Developer – Associate`.trim();
 
+const SAMPLE_JD = `Backend Engineer — Acme Corp (Remote)
+
+We are looking for a Backend Engineer to join our platform team.
+
+Required Skills: Python, FastAPI, PostgreSQL, Docker, REST APIs
+Preferred Skills: Redis, Kubernetes, AWS, CI/CD
+
+Minimum Experience: 3 years
+
+Responsibilities:
+- Design and maintain scalable backend microservices
+- Build and optimize REST APIs for internal and external consumers
+- Manage CI/CD pipelines and deployment infrastructure
+- Mentor junior engineers and conduct code reviews
+
+Education: Bachelor's degree in Computer Science or related field`.trim();
+
 function truncateFilename(name: string, max = 28): string {
   if (name.length <= max) return name;
   const ext = name.slice(name.lastIndexOf("."));
@@ -159,9 +176,14 @@ export default function InputSection({
           </div>
 
           {pdfFilename && !pdfError && (
-            <p className="text-[11px] text-neutral-500 truncate" title={pdfFilename}>
-              {truncateFilename(pdfFilename)}
-            </p>
+            <div className="space-y-0.5">
+              <p className="text-[11px] text-neutral-500 truncate" title={pdfFilename}>
+                {truncateFilename(pdfFilename)}
+              </p>
+              <p className="text-[10px] text-neutral-600 italic">
+                PDF text may include formatting artifacts; edit if needed.
+              </p>
+            </div>
           )}
           {pdfError && (
             <p role="alert" className="text-[11px] text-red-400">
@@ -181,12 +203,36 @@ export default function InputSection({
 
         {/* Job Description */}
         <div className="space-y-2">
-          <label
-            htmlFor="jd-input"
-            className="block text-[11px] font-semibold text-neutral-500 uppercase tracking-widest"
-          >
-            Job Description
-          </label>
+          <div className="flex items-center justify-between gap-2">
+            <label
+              htmlFor="jd-input"
+              className="block text-[11px] font-semibold text-neutral-500 uppercase tracking-widest shrink-0"
+            >
+              Job Description
+            </label>
+
+            <div className="flex items-center gap-2 flex-wrap justify-end">
+              <button
+                type="button"
+                onClick={() => onJDChange(SAMPLE_JD)}
+                className="text-[11px] text-neutral-500 hover:text-blue-400 transition-colors duration-150"
+              >
+                Use sample
+              </button>
+
+              {jdText.length > 0 && (
+                <button
+                  type="button"
+                  onClick={() => onJDChange("")}
+                  className="text-[11px] text-neutral-500 hover:text-red-400 transition-colors duration-150"
+                  aria-label="Clear job description"
+                >
+                  Clear
+                </button>
+              )}
+            </div>
+          </div>
+
           <textarea
             id="jd-input"
             value={jdText}

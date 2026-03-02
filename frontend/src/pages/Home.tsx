@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { analyzeMatch, downloadPdfReport } from "../api/client";
 import type { AnalysisResult, StepId, StepStatus } from "../api/client";
 import InputSection from "../components/InputSection";
@@ -22,6 +22,7 @@ export default function Home() {
   const [error, setError] = useState<string | null>(null);
   const [autoAnalyze, setAutoAnalyze] = useState(true);
   const [pdfLoading, setPdfLoading] = useState(false);
+  const resultsRef = useRef<HTMLElement>(null);
 
   function updateStep(step: StepId, status: StepStatus) {
     setSteps((prev) => ({ ...prev, [step]: status }));
@@ -49,6 +50,7 @@ export default function Home() {
     try {
       const data = await analyzeMatch(resume, jd, updateStep);
       setResult(data);
+      setTimeout(() => resultsRef.current?.scrollIntoView({ behavior: "smooth", block: "start" }), 100);
     } catch (err: unknown) {
       if (err instanceof Error) {
         setError(err.message);
@@ -115,44 +117,37 @@ export default function Home() {
           </div>
         )}
 
-        {/* PDF download — always visible */}
-        <div className="flex justify-end">
-          <button
-            onClick={handleDownloadPdf}
-            disabled={!result || pdfLoading}
-            title={!result ? "Run analysis first to generate report" : undefined}
-            aria-label={
-              pdfLoading
-                ? "Generating PDF report"
-                : !result
-                  ? "Download PDF Report — run analysis first"
-                  : "Download PDF Report"
-            }
-            className="inline-flex items-center gap-2 rounded-lg border border-neutral-700 bg-neutral-800 px-4 py-2 text-sm font-medium text-neutral-200 shadow-sm transition-all hover:bg-neutral-700 hover:border-neutral-600 disabled:opacity-50 disabled:cursor-not-allowed"
-          >
-            {pdfLoading ? (
-              <>
-                <svg className="h-4 w-4 animate-spin" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                  <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
-                  <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z" />
-                </svg>
-                Generating…
-              </>
-            ) : (
-              <>
-                <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2" aria-hidden="true">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                </svg>
-                Download PDF Report
-              </>
-            )}
-          </button>
-        </div>
-
         {/* Results */}
         {result && (
-          <section className="space-y-10 stagger" aria-label="Analysis results">
+          <section ref={resultsRef} className="space-y-10 stagger" aria-label="Analysis results">
             <ScoreCard match={result.match} />
+
+            <div className="flex justify-end">
+              <button
+                onClick={handleDownloadPdf}
+                disabled={pdfLoading}
+                aria-label={pdfLoading ? "Generating PDF report" : "Download PDF Report"}
+                className="inline-flex items-center gap-2 rounded-lg border border-neutral-700 bg-neutral-800 px-4 py-2 text-sm font-medium text-neutral-200 shadow-sm transition-all hover:bg-neutral-700 hover:border-neutral-600 disabled:opacity-50 disabled:cursor-not-allowed"
+              >
+                {pdfLoading ? (
+                  <>
+                    <svg className="h-4 w-4 animate-spin" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+                      <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z" />
+                    </svg>
+                    Generating…
+                  </>
+                ) : (
+                  <>
+                    <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2" aria-hidden="true">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                    </svg>
+                    Download PDF Report
+                  </>
+                )}
+              </button>
+            </div>
+
             <SuggestionsList suggestions={result.feedback.suggestions} />
             <RewrittenBullets bullets={result.feedback.rewritten_bullets} />
           </section>

@@ -149,6 +149,37 @@ export default function ScoreCard({ match }: ScoreCardProps) {
         </div>
       </div>
 
+      {/* Strengths & Weak Areas */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div className="rounded-xl border border-neutral-700/50 bg-neutral-800/40 p-5 shadow-sm">
+          <h3 className="text-[11px] font-semibold text-emerald-500/70 uppercase tracking-widest mb-3">
+            Strengths
+          </h3>
+          <ul className="space-y-2">
+            {match.strengths.map((s, i) => (
+              <li key={i} className="flex gap-2 text-[13px] text-neutral-300 leading-snug">
+                <span className="text-emerald-500/60 shrink-0">+</span>
+                <span>{s}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div className="rounded-xl border border-neutral-700/50 bg-neutral-800/40 p-5 shadow-sm">
+          <h3 className="text-[11px] font-semibold text-amber-500/70 uppercase tracking-widest mb-3">
+            Weak Areas
+          </h3>
+          <ul className="space-y-2">
+            {match.weak_areas.map((s, i) => (
+              <li key={i} className="flex gap-2 text-[13px] text-neutral-300 leading-snug">
+                <span className="text-amber-500/60 shrink-0">–</span>
+                <span>{s}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+
       {/* Skills */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div className="rounded-xl border border-neutral-700/50 bg-neutral-800/40 p-5 shadow-sm">

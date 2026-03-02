@@ -131,6 +131,23 @@ class JDJSON(BaseModel):
 
 
 # ---------------------------------------------------------------------------
+# Skill evidence (for highlighting where skills appear in resume text)
+# ---------------------------------------------------------------------------
+
+
+class SkillEvidence(BaseModel):
+    """A skill with sentence-level evidence snippets from the resume."""
+
+    model_config = {"extra": "forbid"}
+
+    skill: str
+    """The skill name (lowercase)."""
+
+    evidence: List[str]
+    """Up to 2 sentence snippets where this skill appears. Empty for missing skills."""
+
+
+# ---------------------------------------------------------------------------
 # Match report sub-model
 # ---------------------------------------------------------------------------
 
@@ -176,11 +193,11 @@ class MatchReportJSON(BaseModel):
     component_scores: ComponentScores
     """Per-category score breakdown."""
 
-    matched_skills: List[str]
-    """JD skills (required + preferred) found in the resume. Lowercase."""
+    matched_skills: List[SkillEvidence]
+    """JD skills (required + preferred) found in the resume, with evidence snippets."""
 
-    missing_skills: List[str]
-    """Required JD skills NOT found in the resume. Lowercase."""
+    missing_skills: List[SkillEvidence]
+    """Required JD skills NOT found in the resume, with empty evidence."""
 
     strengths: List[str]
     """Bullet points highlighting the candidate's strongest alignments."""
